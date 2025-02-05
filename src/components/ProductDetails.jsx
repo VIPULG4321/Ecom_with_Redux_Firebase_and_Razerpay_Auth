@@ -22,18 +22,20 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    // Create the product data with the quantity
     const productData = {
       id: product.id,
       title: product.title,
       price: product.price,
       quantity: quantity,
+      images: product.images
     };
 
-    // Dispatch the action to add/update the product in the cart
-    console.log("Added to cart : ",productData);
+    console.log("Added to cart",productData);
     dispatch(addToCart(productData));
-    };
+    
+    // console.log("Dispatching product:", product);
+    // dispatch(addToCart(product));
+  }
 
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)

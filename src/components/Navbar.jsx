@@ -15,12 +15,14 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
 
 import { useEffect, useState } from "react";
 import { auth, db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { useDispatch } from 'react-redux';
 import { setSearchQuery, setRatingFilter, setSortOrder, applyFilters } from '../features/searchSlice';
@@ -68,6 +70,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const cartItems = useSelector((state) => state.cart.items).length;
 
   // user Auth code 
 
@@ -102,7 +105,7 @@ export default function Navbar() {
       }
     }
     const handleLogin = () => {
-      navigate("/login"); // Redirect to the login page
+      navigate("/login");
     };
 
     // ends 
@@ -128,6 +131,10 @@ export default function Navbar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  const handleCart =()=>{
+    console.log("fired")
+    navigate("/cart");
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -175,7 +182,8 @@ export default function Navbar() {
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+            {/* <MailIcon /> */}
+            <ShoppingCartIcon />
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -265,9 +273,10 @@ export default function Navbar() {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={handleCart}>
+              <Badge badgeContent={cartItems} color="error">
+                {/* <MailIcon /> */}
+                <ShoppingCartIcon />
               </Badge>
             </IconButton>
             

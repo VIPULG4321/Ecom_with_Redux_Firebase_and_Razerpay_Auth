@@ -72,12 +72,12 @@ const SearchResults = () => {
           <p className="text-gray-600">Price : ${product.price}</p>
           <p className="text-yellow-500">⭐ {product.rating}</p>
         </Link>
-        <button
+        {/* <button
           onClick={() => handleAddToCart(product)}
           className="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
           Add to Cart
-        </button>
+        </button> */}
       </div>
     ))
   ) : (
