@@ -20,10 +20,6 @@ const cartSlice = createSlice({
           state.items.push({ id, title, price, quantity, images });
         }
     },
-    // addToCart: (state, action) => {
-    //   console.log("from slice",action.payload)
-    //   state.items.push(action.payload);  // Push product object to cartItems
-    // },
 
     removeFromCart: (state, action) => {
       const id = action.payload;

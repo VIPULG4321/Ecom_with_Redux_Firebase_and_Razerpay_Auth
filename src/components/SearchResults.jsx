@@ -1,48 +1,13 @@
-// import React, { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchProducts } from "../features/searchSlice";
-
-// const SearchResults = () => {
-//   const dispatch = useDispatch();
-//   const { filteredProducts, status } = useSelector((state) => state.search);
-
-//   useEffect(() => {
-//     dispatch(fetchProducts());
-//   }, [dispatch]);
-
-//   if (status === "loading") return <p>Loading...</p>;
-//   if (status === "failed") return <p className="text-red-500">Failed to load products.</p>;
-
-//   return (
-//     <div className="mt-4">
-//       {filteredProducts.length > 0 ? (
-//         <ul className="border p-4 rounded">
-//           {filteredProducts.map((product) => (
-//             <li key={product.id} className="p-2 border-b">
-//               {product.title} - ${product.price}
-//             </li>
-//           ))}
-//         </ul>
-//       ) : (
-//         <p>No products found.</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default SearchResults;
-
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../features/searchSlice";
 import { Link } from "react-router-dom";
 
-const SearchResults = () => {
+const   SearchResults = () => {
   const dispatch = useDispatch();
   const { filteredProducts, status } = useSelector((state) => state.search);
 
   const handleAddToCart = (product) => {
-    // This function will handle adding the product to the cart
     console.log("Product added to cart:", product);
   };
   
@@ -64,12 +29,12 @@ const SearchResults = () => {
       >
         <Link to={`/products/${product.id}`} className="w-full">
           <img
-            src={product.images} // Assuming products have an image property
+            src={product.images}
             alt={product.title}
             className="w-32 h-32 object-cover rounded-md mx-auto"
           />
           <h2 className="text-lg font-semibold mt-2">{product.title}</h2>
-          <p className="text-gray-600">Price : ${product.price}</p>
+          <p className="text-gray-600">Price : ₹{product.price}</p>
           <p className="text-yellow-500">⭐ {product.rating}</p>
         </Link>
         {/* <button

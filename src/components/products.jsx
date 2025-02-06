@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore";
-// import Products from "./products";
 import { useNavigate } from "react-router-dom";
 
 // reducer 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../features/searchSlice";
 
-// serachresult 
 import SearchResults from "./SearchResults";
 
 function Products() {
@@ -57,7 +55,18 @@ function Products() {
           <SearchResults></SearchResults>
         </>
       ) : (
-        <p className="text-blue-500">User might not registered ? Please Login first <h6 onClick={handleLogin}>Click here</h6></p>
+        <div className="p-4 bg-blue-50 border border-blue-300 rounded-lg text-center">
+          <p className="text-blue-600 text-sm flex items-center justify-center gap-1">
+          User might not be registered? Please login first  
+          <span 
+            onClick={handleLogin} 
+            className="text-blue-700 font-semibold cursor-pointer hover:underline"
+          >
+            Click here
+          </span>
+        </p>
+</div>
+
       )}
     </div>
   );

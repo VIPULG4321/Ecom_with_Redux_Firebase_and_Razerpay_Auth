@@ -1,19 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// ✅ Fetch Products from DummyJSON API
 export const fetchProducts = createAsyncThunk("search/fetchProducts", async () => {
   const res = await fetch("https://dummyjson.com/products");
   const data = await res.json();
-  return data.products; // Returns the array of products
+  return data.products;
 });
 
 const searchSlice = createSlice({
   name: "search",
   initialState: {
-    allProducts: [], // Stores original products
-    filteredProducts: [], // Stores search results
+    allProducts: [],
+    filteredProducts: [],
     searchQuery: "",
-    sortOrder: "default", // 'asc', 'desc', or 'default'
+    sortOrder: "default",
     minRating: 0,
     status: "idle",
   },
@@ -24,7 +23,7 @@ const searchSlice = createSlice({
         ? state.allProducts.filter(product =>
             product.title.toLowerCase().includes(action.payload.toLowerCase())
           )
-        : state.allProducts; // Reset when search is empty
+        : state.allProducts;
     },
     setRatingFilter: (state, action) => {
         state.minRating = action.payload;
@@ -66,7 +65,7 @@ const searchSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.allProducts = action.payload;
-        state.filteredProducts = action.payload; // Initially, show all products
+        state.filteredProducts = action.payload;
       })
       .addCase(fetchProducts.rejected, (state) => {
         state.status = "failed";

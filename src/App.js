@@ -1,25 +1,26 @@
+import "flowbite";
 import React, { useEffect } from "react";
-import "./App.css";
 import {
+  Navigate,
+  Route,
   BrowserRouter as Router,
   Routes,
-  Route,
-  Navigate,
 } from "react-router-dom";
-import "flowbite";
+import "./App.css";
 
 import Login from "./components/login";
 import SignUp from "./components/register";
 
+import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
-import { auth } from "./components/firebase";
-import Profile from "./components/profile";
-import Navbar from './components/Navbar.jsx'
-import Products from "./components/products.jsx";
-import ProductDetails from './components/ProductDetails.jsx'
 import Cart from "./components/Cart.jsx";
+import { auth } from "./components/firebase";
+import Navbar from "./components/Navbar.jsx";
+import ProductDetails from "./components/ProductDetails.jsx";
+import Products from "./components/products.jsx";
+import Profile from "./components/profile";
+import Success from "./components/Success.jsx";
 
 function App() {
   const [user, setUser] = useState();
@@ -33,7 +34,7 @@ function App() {
       <div className="App">
         <div className="">
           <div className="">
-              <Navbar />
+            <Navbar />
             <Routes>
               <Route
                 path="/"
@@ -44,7 +45,9 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/products/:id" element={<ProductDetails />} /> {/* Dynamic route */}
+              <Route path="/success/:id" element={<Success />} />
+              <Route path="/products/:id" element={<ProductDetails />} />
+              {/* {" "} */}
             </Routes>
             <ToastContainer />
           </div>
